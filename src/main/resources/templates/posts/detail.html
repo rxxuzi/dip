@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${post.title} + ' - Dip'">Post Title - Dip</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/posts.css">
+</head>
+<body>
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h1 class="logo">Dip</h1>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/" class="nav-item">Home</a></li>
+                <li><a href="/posts" class="nav-item active">Posts</a></li>
+                <li><a href="/search" class="nav-item">Search</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <a href="/posts" class="back-link">← Back to posts</a>
+
+        <article class="post-detail" th:if="${post != null}">
+            <h1 class="post-title" th:text="${post.title}">Post Title</h1>
+
+            <div class="post-meta">
+                <div class="author">
+                    <span class="by">By</span>
+                    <span class="username" th:text="${post.user.username}">Username</span>
+                </div>
+                <div class="date" th:text="${#temporals.format(post.createdAt, 'MMM d, yyyy - h:mm a')}">
+                    May 13, 2025 - 9:00 PM
+                </div>
+            </div>
+
+            <div class="post-content" th:utext="${#strings.replace(#strings.escapeXml(post.content), '&#10;', '<br/>')}">
+                Post content goes here...
+            </div>
+        </article>
+
+        <div class="error-message" th:unless="${post != null}">
+            <h2>Post not found</h2>
+            <p>The post you're looking for doesn't exist or may have been removed.</p>
+            <a href="/posts" class="btn">View all posts</a>
+        </div>
+    </main>
+</div>
+
+<!-- New Shot Button (Fixed position) -->
+<button id="newPostBtn" class="btn-new">New Shot</button>
+
+<!-- Post Modal -->
+<div id="postModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">New Shot</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <form id="postForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="cancelBtn" class="btn">Cancel</button>
+                <button type="submit" class="btn">Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/modal.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

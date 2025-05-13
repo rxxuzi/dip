@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dip</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h1 class="logo">Dip</h1>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/" class="nav-item active">Home</a></li>
+                <li><a href="/posts" class="nav-item">Posts</a></li>
+                <li><a href="/search" class="nav-item">Search</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="content-header">
+            <h2 class="page-title">Home</h2>
+        </header>
+
+        <div id="posts-container" class="posts-container">
+            <!-- Posts will be loaded here dynamically -->
+            <div class="empty-state">
+                No posts yet. Be the first to share something!
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- New Shot Button (Fixed position) -->
+<button id="newPostBtn" class="btn-new">New Shot</button>
+
+<!-- Post Modal -->
+<div id="postModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">New Shot</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <form id="postForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="cancelBtn" class="btn">Cancel</button>
+                <button type="submit" class="btn">Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/modal.js"></script>
+<script src="/js/posts.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
