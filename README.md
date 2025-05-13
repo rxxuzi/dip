@@ -13,7 +13,7 @@ Simple, modern noticeboard application. Features a minimalist design and easy-to
 ### Install & Run
 
 1. clone repository
-   Clone the repositories ``bash
+   ```bash
    git clone https://github.com/rxxuzi/dip.git
    cd dip
    ````
